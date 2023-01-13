@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: ecsdemo-frontend
 spec:
+  type: NodePort
   selector:
-    app: ecsdemo-frontend
-  type: LoadBalancer
+    app.kubernetes.io/name: ecsdemo-frontend
   ports:
    -  protocol: TCP
       port: 80
       targetPort: 3000
-
