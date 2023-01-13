@@ -20,6 +20,8 @@ spec:
       labels:
         app: ecsdemo-frontend
     spec:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: web-server
       containers:
       - image: brentley/ecsdemo-frontend:latest
         imagePullPolicy: Always
