@@ -2,7 +2,21 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: ecsdemo-frontend
+  annotations:
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
 spec:
-  backend:
-    serviceName: ecsdemo-frontend
-    servicePort: 80
+  ingressClassName: alb
+  rules:
+    - http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: ecsdemo-frontend
+              port:
+                number: 80
+  #backend:
+  #  serviceName: ecsdemo-frontend
+  #  servicePort: 80
